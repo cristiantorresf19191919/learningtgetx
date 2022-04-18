@@ -12,7 +12,7 @@ class HomeList extends StatelessWidget {
         id: 'users',
         builder: (_) {
           if (_.loading) {
-            return Center(child: LinearProgressIndicator());
+            return const Center(child: LinearProgressIndicator());
           }
           return ListView.builder(
               itemCount: _.users.length,
@@ -21,6 +21,9 @@ class HomeList extends StatelessWidget {
                 return ListTile(
                   title: Text(user.firstName),
                   subtitle: Text(user.email),
+                  onTap: () {
+                    _.showUserProfile(user);
+                  },
                 );
               });
         });

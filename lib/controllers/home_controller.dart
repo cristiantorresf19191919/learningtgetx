@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:getx_demo/api/users_api.dart';
 import 'package:getx_demo/models/user.dart';
+import 'package:getx_demo/pages/profile_page.dart';
 
 class HomeController extends GetxController {
   int _counter = 0;
@@ -38,5 +39,13 @@ class HomeController extends GetxController {
   void increment() {
     _counter++;
     update(['text'], _counter <= 10);
+  }
+
+  Future<void> showUserProfile(User user) async {
+    final result = await Get.to<String>(ProfilePage(),
+        transition: Transition.downToUp, arguments: user);
+    if (result != null) {
+      print("Result is null 🤦‍♂️ ${result}");
+    }
   }
 }
