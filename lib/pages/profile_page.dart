@@ -23,13 +23,13 @@ class ProfilePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text("${_.user.firstName} -- ${_.user.lastName}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 CupertinoTextField(
                   onChanged: _.onInputTextChanged,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 CupertinoButton(
