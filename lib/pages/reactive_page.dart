@@ -12,34 +12,39 @@ class ReactivePage extends StatelessWidget {
         builder: (_) {
           print("Reactive");
           return Scaffold(
-            body: Obx(() => ListView.builder(
-                itemCount: _.items.length,
-                itemBuilder: (__, index) {
-                  final String text = _.items[index];
-                  return ListTile(
-                    title: Text(text),
-                    trailing: IconButton(
-                        onPressed: () => _.removeItem(index),
-                        icon: const Icon(Icons.delete)),
-                  );
-                })),
-            floatingActionButton: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                FloatingActionButton(
-                  heroTag: 'add',
-                  child: const Icon(Icons.add),
-                  onPressed: () {
-                    _.increment();
-                  },
-                ),
-                FloatingActionButton(
-                  heroTag: 'date',
-                  child: const Icon(Icons.calendar_today),
-                  onPressed: () => _.addItem(),
-                )
-              ],
-            ),
+            body:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Obx(() => Text("age ${_.myPet.value.age}")),
+              TextButton(
+                  onPressed: () => _.setPetAge(_.myPet.age + 1),
+                  child: const Text("set age"))
+            ]),
+            // body: Obx(() => ListView(
+            //     children: _.mapItems.values
+            //         .map((e) => ListTile(
+            //               title: Text(e),
+            //               trailing: IconButton(
+            //                   onPressed: () => _.deleteMapItem(e),
+            //                   icon: const Icon(Icons.delete)),
+            //             ))
+            //         .toList())),
+            // floatingActionButton: Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     FloatingActionButton(
+            //       heroTag: 'add',
+            //       child: const Icon(Icons.add),
+            //       onPressed: () {
+            //         _.addMapItem();
+            //       },
+            //     ),
+            //     FloatingActionButton(
+            //       heroTag: 'date',
+            //       child: const Icon(Icons.calendar_today),
+            //       onPressed: () => _.addItem(),
+            //     )
+            //   ],
+            // ),
           );
         });
   }

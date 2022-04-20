@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
       builder: (_) => Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              onPressed: () => Get.back(), icon: Icon(Icons.arrow_back)),
+              onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back)),
         ),
         body: Center(
           child: SafeArea(
