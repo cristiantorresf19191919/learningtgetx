@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:getx_demo/controllers/socket_client_controller.dart';
 import 'package:getx_demo/models/pet.dart';
 
 class ReactiveController extends GetxController {
@@ -11,6 +12,25 @@ class ReactiveController extends GetxController {
   RxMap<String, dynamic> mapItems = <String, dynamic>{}.obs;
 
   Pet myPet = Pet(name: "Rocko", age: 1);
+
+  late StreamSubscription<String> _subscription;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    final socketController = Get.find<SocketClientController>();
+
+    _subscription = socketController.message
+        .listen((String data) => print("😘 data >> ${data}"));
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    _subscription?.cancel();
+    super.onClose();
+  }
 
   void increment() {
     counter.value++;
