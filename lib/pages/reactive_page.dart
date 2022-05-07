@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_demo/controllers/reactive_controller.dart';
@@ -16,6 +17,9 @@ class ReactivePage extends StatelessWidget {
           return Scaffold(
             body:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              CupertinoTextField(
+                onChanged: (text) => socketController.setSearchText(text),
+              ),
               // Obx(() => Text("age ${_.myPet.age}")),
               Obx(() => Text(socketController.message.value)),
               TextButton(

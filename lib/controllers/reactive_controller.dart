@@ -20,15 +20,15 @@ class ReactiveController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     final socketController = Get.find<SocketClientController>();
-
     _subscription = socketController.message
-        .listen((String data) => print("😘 data >> ${data}"));
+        // ignore: avoid_print
+        .listen((String data) {});
   }
 
   @override
   void onClose() {
     // TODO: implement onClose
-    _subscription?.cancel();
+    _subscription.cancel();
     super.onClose();
   }
 
